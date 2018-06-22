@@ -2,25 +2,26 @@ package com.wsp.java.god.limit;
 
 import java.util.concurrent.TimeUnit;
 
-import static java.util.concurrent.TimeUnit.SECONDS;
+
 
 /**
  * 平滑的令牌桶限流器实现
  * 其中时间都以微妙计算
- *
+ * 令牌桶限流器应对并发大流量更平滑,在限流基础上对可用性影响也更低
  * @author wsp
  */
 public class TokenBucketRateLimit implements RateLimit {
 
+
     /**
      * 每秒钟产生的令牌个数
      */
-    private int tokenPerSecond;
+    private final int tokenPerSecond;
 
     /**
      * 桶中令牌最大个数
      */
-    private int maxToken;
+    private final int maxToken;
 
     /**
      * 令牌桶限流器启动时候的时间
@@ -53,7 +54,7 @@ public class TokenBucketRateLimit implements RateLimit {
      * 默认每秒钟产生1个令牌
      */
     public TokenBucketRateLimit() {
-        this(1);
+        this(1,MAX_TOKEN_NUM);
     }
 
 
@@ -66,18 +67,25 @@ public class TokenBucketRateLimit implements RateLimit {
 
 
     public TokenBucketRateLimit(int tokenPerSecond, int maxToken) {
-        if (tokenPerSecond <= 0 || maxToken <= 0) {
-            throw new IllegalArgumentException("tokenPerSecond Or maxToken Can't be less than 0");
-        }
-        this.tokenPerSecond = 1;
-        this.maxToken = maxToken;
-        startTime = TimeUnit.MICROSECONDS.convert(System.nanoTime(), TimeUnit.MICROSECONDS);
+        checkParam(tokenPerSecond,maxToken);
+        this.tokenPerSecond = tokenPerSecond;
+        this.maxToken = Math.min(maxToken,MAX_TOKEN_NUM);
+        startTime = TimeUnit.MICROSECONDS.convert(System.nanoTime(), TimeUnit.NANOSECONDS);
         lastGenTokenMicros = 0;
         genTokenMicros = TimeUnit.SECONDS.toMicros(1) / tokenPerSecond;
         syncGenToken(getElapseTime());/*创建限流器的时候就随机生成一部分token避免启动就有大流量*/
     }
 
 
+
+    private void checkParam(int tokenPerSecond,int maxToken){
+        if (tokenPerSecond <= 0 || maxToken <= 0) {
+            throw new IllegalArgumentException("tokenPerSecond Or maxToken Can't be less than 0");
+        }
+        if(tokenPerSecond>maxToken){
+            throw new IllegalArgumentException("tokenPerSecond can't be bigger than maxToken");
+        }
+    }
 
     @Override
     public boolean tryAcquire() {
@@ -93,11 +101,14 @@ public class TokenBucketRateLimit implements RateLimit {
                 availableToken = availableToken - token;
                 return true;
             }
-            return false;
         }
+        return false;
     }
 
-
+    /**
+     * 同步生成token
+     * @param elapseMicros
+     */
     private void syncGenToken(long elapseMicros) {
         if (elapseMicros > lastGenTokenMicros) {
             double newToken = (elapseMicros - lastGenTokenMicros) / genTokenMicros;
@@ -107,12 +118,9 @@ public class TokenBucketRateLimit implements RateLimit {
     }
 
     private long getElapseTime() {
-        return TimeUnit.MICROSECONDS.convert(System.nanoTime(), TimeUnit.MICROSECONDS) - startTime;
+        return TimeUnit.MICROSECONDS.convert(System.nanoTime(), TimeUnit.NANOSECONDS) - startTime;
     }
 
-    private double getWaitTime(long nowMicros) {
-        return 1.0 * Math.max((System.nanoTime() - nowMicros), 0) / SECONDS.toNanos(1L);
-    }
 
 
 }

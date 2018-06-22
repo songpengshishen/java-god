@@ -7,7 +7,6 @@ package com.wsp.java.god.limit;
 public interface RateLimit {
 
 
-
     /**
      * 尝试获取单个令牌,获取到就返回true,没有获取到返回false
      * @return
