@@ -12,6 +12,7 @@
     <modules>
         <module>java-god-limit</module>
         <module>java-god-serialize</module>
+        <module>java-god-datastruct</module>
     </modules>
 
     <properties>
