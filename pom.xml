@@ -13,6 +13,7 @@
         <module>java-god-limit</module>
         <module>java-god-serialize</module>
         <module>java-god-datastruct</module>
+        <module>java-god-designpattern</module>
     </modules>
 
     <properties>
