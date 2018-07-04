@@ -1,7 +1,7 @@
 package com.wsp.java.god.designpattern.observer;
 
 /**
- * 测试
+ * 观察者模式测试类
  */
 public class Main {
 

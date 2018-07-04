@@ -1,7 +1,7 @@
 package com.wsp.java.god.designpattern.proxy;
 
 /**
- * Created by wangsongpeng on 2018/6/30.
+ * 代理模式测试类
  */
 public class Main {
 

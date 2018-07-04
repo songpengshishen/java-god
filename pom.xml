@@ -14,6 +14,7 @@
         <module>java-god-serialize</module>
         <module>java-god-datastruct</module>
         <module>java-god-designpattern</module>
+        <module>java-god-ioc</module>
     </modules>
 
     <properties>

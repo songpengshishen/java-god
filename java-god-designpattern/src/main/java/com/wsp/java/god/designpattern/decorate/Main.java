@@ -1,7 +1,7 @@
 package com.wsp.java.god.designpattern.decorate;
 
 /**
- * Created by wangsongpeng on 2018/6/30.
+ * 装饰着模式测试类
  */
 public class Main {
     public static void main(String[] args) {

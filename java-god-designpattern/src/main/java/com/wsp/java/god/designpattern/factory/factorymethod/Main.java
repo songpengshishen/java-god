@@ -1,7 +1,7 @@
 package com.wsp.java.god.designpattern.factory.factorymethod;
 
 /**
- * Created by wangsongpeng on 2018/6/30.
+ * 工厂方法模式测试类
  */
 public class Main {
 

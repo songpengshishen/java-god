@@ -9,7 +9,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 /**
- * Main
+ * 单例模式测试类
  * @author wsp
  */
 public class Main {

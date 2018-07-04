@@ -1,7 +1,7 @@
 package com.wsp.java.god.designpattern.builder;
 
 /**
- * 测试
+ * 构建者测试类
  */
 public class Main {
 
