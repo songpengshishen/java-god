@@ -1,4 +1,4 @@
-package com.wsp.java.god.designpattern.Template;
+package com.wsp.java.god.designpattern.template;
 
 /**
  * 小炒肉
