@@ -15,6 +15,8 @@
         <module>java-god-datastruct</module>
         <module>java-god-designpattern</module>
         <module>java-god-ioc</module>
+        <module>java-god-concurrent</module>
+        <module>java-god-vertx</module>
     </modules>
 
     <properties>
