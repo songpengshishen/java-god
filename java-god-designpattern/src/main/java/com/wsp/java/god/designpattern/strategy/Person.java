@@ -12,6 +12,12 @@ public class Person {
 
     private double money;
 
+    public Person(int age, double weight, double money) {
+        this.age = age;
+        this.weight = weight;
+        this.money = money;
+    }
+
     public int getAge() {
         return age;
     }
@@ -34,5 +40,14 @@ public class Person {
 
     public void setMoney(double money) {
         this.money = money;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "age=" + age +
+                ", weight=" + weight +
+                ", money=" + money +
+                '}';
     }
 }
