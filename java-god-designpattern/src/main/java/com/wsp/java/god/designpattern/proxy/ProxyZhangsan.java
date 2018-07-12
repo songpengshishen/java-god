@@ -11,6 +11,5 @@ public class ProxyZhangsan implements Person{
     @Override
     public void negotiation() {
         System.out.println("我代替张三来谈判");
-        person.negotiation();
     }
 }
