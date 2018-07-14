@@ -17,6 +17,7 @@
         <module>java-god-ioc</module>
         <module>java-god-concurrent</module>
         <module>java-god-vertx</module>
+        <module>java-god-cache</module>
     </modules>
 
     <properties>
