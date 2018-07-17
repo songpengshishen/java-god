@@ -12,11 +12,12 @@ public class EventBusSample {
 
     public static final EventBus eb = Vertx.vertx().eventBus();
 
+    public static Class<EventBusSample> clz =  EventBusSample.class;
+
     public static void main(String[] args) throws InterruptedException {
         registerMsgHandler();
         sendMsg();
         try {
-            Class<EventBusSample> clz = EventBusSample.class;
             synchronized (clz){
                 clz.wait();
             }
@@ -33,6 +34,8 @@ public class EventBusSample {
             System.out.println("I have received a message : " + message.body());
         });
     }
+
+
 
 
     static void sendMsg(){
