@@ -18,6 +18,7 @@
         <module>java-god-concurrent</module>
         <module>java-god-vertx</module>
         <module>java-god-cache</module>
+        <module>java-god-algorithm</module>
     </modules>
 
     <properties>
