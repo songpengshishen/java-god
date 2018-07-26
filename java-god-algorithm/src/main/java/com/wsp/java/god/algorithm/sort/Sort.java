@@ -10,8 +10,8 @@ public abstract class Sort {
 
 
     public static void main(String[] args) {
-        int arr[] = {12,8,1,4,6,2,6,3,12,8,1,4,6,2};
-        Sort sort = new InsertionSort();
+        int arr[] = {12,8,1,4,6,2,6,3,12,8,1,4,6};
+        Sort sort = new QuickSort();
         sort.sort(arr);
     }
 
