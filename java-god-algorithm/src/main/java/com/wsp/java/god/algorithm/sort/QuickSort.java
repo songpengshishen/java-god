@@ -16,7 +16,7 @@ public class QuickSort extends Sort {
 
     protected void quickSort(int[] sortArr, int leftIndex, int rightIndex) {
         int i, j, temp, baseNum;
-        if (leftIndex > rightIndex) {
+        if (leftIndex >rightIndex) {
             return;
         }
         baseNum = sortArr[leftIndex];//设置基准数
@@ -45,11 +45,18 @@ public class QuickSort extends Sort {
                 sortArr[i] = sortArr[j];
                 sortArr[j] = temp;
             }
-            sortArr[leftIndex] = sortArr[i];
-            sortArr[i] = baseNum;
-            quickSort(sortArr,leftIndex,i-1);
-            quickSort(sortArr,i+1,rightIndex);
+
         }
+        /**
+         * 交换基准数
+         */
+        sortArr[leftIndex] = sortArr[i];
+        sortArr[i] = baseNum;
+        /**
+         * 迭代排序
+         */
+        quickSort(sortArr,leftIndex,i-1);
+        quickSort(sortArr,i+1,rightIndex);
     }
 
 
